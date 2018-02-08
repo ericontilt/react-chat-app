@@ -30,6 +30,7 @@ const initialState = [{
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_MESSAGE:
+    case actionTypes.MESSAGE_RECEIVED:
       return [
         ...state,
         {

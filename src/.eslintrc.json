@@ -3,7 +3,8 @@
   "rules": {
     "no-plusplus": "off"
   },
-  "globals": {
-    "WebSocket": true
+  "env": {
+    "browser": true,
+    "node": true
   }
 }

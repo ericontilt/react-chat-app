@@ -1,18 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
 import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import rootReducer from './reducers';
-import startSocketConnection from './socket';
+import { createSocket, createAddMessageMiddleware } from './socket';
 
 import './index.css';
 
-const store = createStore(rootReducer);
+const { socket, start: listen } = createSocket();
 
-startSocketConnection(store.dispatch, '');
+const store = createStore(
+  rootReducer,
+  applyMiddleware(createAddMessageMiddleware(socket)),
+);
+
+listen(store.dispatch, '');
 
 ReactDOM.render(
   <Provider store={store}>

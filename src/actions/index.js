@@ -11,4 +11,10 @@ export const addMessage = (message, userId) => ({
   userId,
 });
 
+export const messageReceived = (message, userId) => ({
+  type: actionTypes.MESSAGE_RECEIVED,
+  message,
+  userId,
+});
+
 export const silenceLinter = () => { };

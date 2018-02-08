@@ -6,10 +6,10 @@ console.log('Listening on ws://localhost:9000');
 
 const users = [];
 
-const broadcastToOthers = (data, ws) => {
+const broadcastToOthers = (payload, ws) => {
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN && client !== ws) {
-      client.send(JSON.stringify(data));
+      client.send(JSON.stringify(payload));
     }
   });
 };
@@ -29,7 +29,7 @@ wss.on('connection', (ws) => {
     console.log(`Received payload: ${message}`);
 
     switch (payload.type) {
-      case 'REGISTER': {
+      case 'REGISTER':
         users.push({ name: payload.name, id: userIndex });
         send({
           type: 'REGISTERED',
@@ -40,8 +40,8 @@ wss.on('connection', (ws) => {
           users,
         }, ws);
         break;
-      }
       case 'MESSAGE':
+        console.log('broadcasing message');
         broadcastToOthers({
           type: 'MESSAGE_RECEIVED',
           message: payload.message,
