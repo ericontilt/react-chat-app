@@ -5,6 +5,7 @@ const wss = new WebSocket.Server({ port: 9000 });
 console.log('Listening on ws://localhost:9000');
 
 const users = [];
+let userId = 1;
 
 const broadcastToOthers = (payload, ws) => {
   wss.clients.forEach((client) => {
@@ -15,13 +16,11 @@ const broadcastToOthers = (payload, ws) => {
 };
 
 wss.on('connection', (ws) => {
-  const userIndex = users.length + 1;
-
   const send = payload => ws.send(JSON.stringify(payload), err => {
     console.log(err);
   });
 
-  console.log(`User ${userIndex} connected`);
+  console.log(`User ${userId} connected`);
 
   ws.on('message', (message) => {
     const payload = JSON.parse(message);
@@ -30,15 +29,16 @@ wss.on('connection', (ws) => {
 
     switch (payload.type) {
       case 'REGISTER':
-        users.push({ name: payload.name, id: userIndex });
+        users.push({ name: payload.name, id: userId });
         send({
           type: 'REGISTERED',
-          userId: userIndex,
+          userId: userId,
         });
         broadcastToOthers({
           type: 'USER_LIST',
           users,
         }, ws);
+        userId += 1;
         break;
       case 'MESSAGE':
         console.log('broadcasing message');
@@ -53,10 +53,12 @@ wss.on('connection', (ws) => {
     }
   });
 
+  ws.on('error', () => console.log('errored'));
+
   ws.on('close', () => {
-    users.splice(userIndex, 1);
-    console.log(`Closed connection for user ${userIndex}`);
-    broadcast({
+    console.log(`Closing connection`);
+    users.splice(userId, 1);
+    broadcastToOthers({
       type: 'USERS_LIST',
       users,
     }, ws);
