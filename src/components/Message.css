@@ -1,0 +1,22 @@
+.Message {
+  display: flex;
+}
+
+.Message blockquote {
+  padding: 4px 10px;
+  margin: 4px 18px;
+  border-radius: 10px;
+}
+
+.Message--mine {
+  justify-content: flex-end;
+}
+
+.Message--mine blockquote {
+  background-color: green;
+  justify-content: flex-end;
+}
+
+.Message--theirs blockquote {
+  background-color: lightgrey;
+}

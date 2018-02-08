@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import MessageList from './components/MessageList';
+import AddMessage from './components/AddMessage';
 
 import './App.css';
 
@@ -9,27 +10,27 @@ const assignedUserId = 1;
 const messages = [{
   id: seqNr++,
   text: 'Hey dude!',
-  user: 1,
+  userId: 1,
 }, {
   id: seqNr++,
   text: 'How are ya?',
-  user: 1,
+  userId: 1,
 }, {
   id: seqNr++,
   text: 'Fuckin\' fantastic!',
-  user: 2,
+  userId: 2,
 }, {
   id: seqNr++,
   text: 'Wassup?',
-  user: 2,
+  userId: 2,
 }, {
   id: seqNr++,
   text: 'Working on this app..',
-  user: 1,
+  userId: 1,
 }, {
   id: seqNr++,
   text: 'It\'s supposed to solve the world peace issue..',
-  user: 1,
+  userId: 1,
 }];
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
     return (
       <div className="App">
         <MessageList userId={assignedUserId} messages={messages} />
+        <AddMessage />
       </div>
     );
   }

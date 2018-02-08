@@ -1,0 +1,23 @@
+.AddMessage {
+  position: relative;
+  height: 32px;
+  display: flex;
+}
+
+.AddMessage__input {
+  height: 100%;
+  border: 1px solid lightgray;
+  border-width: 1px 1px 0 0;
+  flex: 1;
+}
+
+.AddMessage__sendButton {
+  height: 100%;
+  padding: 0 8px;
+  border: 1px solid lightgray;
+  border-width: 1px 0 0 0;
+}
+
+.AddMessage__sendButton:hover {
+  background-color: lightgray;
+}
