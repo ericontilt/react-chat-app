@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import './Message.css';
@@ -9,6 +10,11 @@ const Message = ({ text, className }) => (
       {text}
     </blockquote>
   </li>
-)
+);
+
+Message.propTypes = {
+  text: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+};
 
 export default Message;

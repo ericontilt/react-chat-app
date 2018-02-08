@@ -7,6 +7,6 @@ const AddMessage = () => (
     <input className="AddMessage__input" type="text" />
     <button className="AddMessage__sendButton">Send</button>
   </section>
-)
+);
 
 export default AddMessage;
