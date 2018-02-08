@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import MessageList from './containers/MessageList';
-import AddMessage from './components/AddMessage';
+import AddMessage from './containers/AddMessage';
 
 import './App.css';
 
