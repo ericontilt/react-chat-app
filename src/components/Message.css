@@ -3,6 +3,7 @@
 }
 
 .Message blockquote {
+  position: relative;
   padding: 4px 10px;
   margin: 4px 18px;
   border-radius: 10px;
@@ -13,10 +14,32 @@
 }
 
 .Message--mine blockquote {
-  background-color: green;
+  background-color: lightseagreen;
   justify-content: flex-end;
 }
 
 .Message--theirs blockquote {
   background-color: lightgrey;
+}
+
+.Message--mine blockquote::before, .Message--theirs blockquote::after {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 0;
+  height: 0;
+}
+
+.Message--mine blockquote::before {
+    border: .5em solid lightseagreen;
+    border-color: transparent transparent lightseagreen lightseagreen;
+    bottom: 4px;
+    right: -.5em;
+}
+
+.Message--theirs blockquote::after {
+    border: .5em solid lightgrey;
+    border-color: transparent lightgrey lightgrey transparent ;
+    bottom: 4px;
+    left: -.5em;
 }
