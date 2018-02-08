@@ -3,8 +3,14 @@ import { connect } from 'react-redux';
 import AddMessageComponent from '../components/AddMessage';
 import { addMessage } from '../actions';
 
-export default connect(() => ({}), dispatch => ({
+const mapStateToProps = state => ({
+  userId: state.userId,
+});
+
+const mapDispatchToProps = dispatch => ({
   addMessage: (message, userId) => {
     dispatch(addMessage(message, userId));
   },
-}))(AddMessageComponent);
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddMessageComponent);

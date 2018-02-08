@@ -6,6 +6,7 @@ import Message from './Message';
 import './MessageList.css';
 
 const MessageList = ({
+  userId,
   messages = [],
 }) => (
   <section className="MessageList">
@@ -15,7 +16,7 @@ const MessageList = ({
           <Message
             key={m.id}
             text={m.text}
-            className={m.userId === 1 ? 'Message--mine' : 'Message--theirs'}
+            className={m.userId === userId ? 'Message--mine' : 'Message--theirs'}
           />
         ))
       }
@@ -24,6 +25,7 @@ const MessageList = ({
 );
 
 MessageList.propTypes = {
+  userId: PropTypes.number.isRequired,
   messages: PropTypes.arrayOf(PropTypes.string),
 };
 MessageList.defaultProps = {
