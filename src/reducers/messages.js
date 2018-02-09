@@ -1,4 +1,5 @@
 import * as actionTypes from '../constants/actionTypes';
+import { findLastIndex } from '../utils';
 
 let nextMessageId;
 
@@ -15,6 +16,15 @@ export default (state = [], action) => {
           userId: action.userId,
         },
       ];
+    case actionTypes.MESSAGE_UNDO:
+    {
+      const nextState = [...state];
+      const index = findLastIndex(state, m => m.userId === action.userId);
+      if (index > -1) {
+        nextState.splice(index, 1);
+      }
+      return nextState;
+    }
     default:
       return state;
   }

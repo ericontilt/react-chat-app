@@ -1,5 +1,5 @@
 import * as types from '../constants/actionTypes';
-import { registered, messageReceived } from '../actions';
+import { registered, messageReceived, messageUndo } from '../actions';
 
 export const createSocket = () => {
   const socket = new WebSocket('ws://localhost:9000');
@@ -29,6 +29,9 @@ export const createSocket = () => {
           break;
         case types.MESSAGE_RECEIVED:
           dispatch(messageReceived(data.message, data.userId));
+          break;
+        case types.MESSAGE_UNDO:
+          dispatch(messageUndo(data.userId));
           break;
         default:
           break;

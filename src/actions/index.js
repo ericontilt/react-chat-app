@@ -16,3 +16,8 @@ export const messageReceived = (message, userId) => ({
   message,
   userId,
 });
+
+export const messageUndo = userId => ({
+  type: actionTypes.MESSAGE_UNDO,
+  userId,
+});

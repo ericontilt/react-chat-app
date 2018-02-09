@@ -22,6 +22,41 @@ wss.on('connection', (ws) => {
 
   console.log(`User ${userId} connected`);
 
+  const processMessage = payload => {
+    const words = payload.message.trim().split(' ');
+    if (words.length === 0) return;
+
+    switch (words[0].toLowerCase()) {
+      case '/nick':
+        users.find(u => u.userId === payload.userId).name = payload.name;
+        broadcastToOthers({
+          type: 'USER_LIST',
+          users,
+        }, ws);
+        break;
+      case '/oops':
+        broadcastToOthers({
+          type: 'MESSAGE_UNDO',
+          userId: payload.userId,
+        });
+        break;
+      case '/think':
+        broadcastToOthers({
+          type: 'MESSAGE_RECEIVED',
+          message: payload.message,
+          userId: payload.userId,
+          style: 'think',
+        }, ws);
+        break;
+      default:
+        broadcastToOthers({
+          type: 'MESSAGE_RECEIVED',
+          message: payload.message,
+          userId: payload.userId,
+        }, ws);
+    }
+  }
+
   ws.on('message', (message) => {
     const payload = JSON.parse(message);
 
@@ -41,12 +76,7 @@ wss.on('connection', (ws) => {
         userId += 1;
         break;
       case 'MESSAGE':
-        console.log('broadcasing message');
-        broadcastToOthers({
-          type: 'MESSAGE_RECEIVED',
-          message: payload.message,
-          userId: payload.userId,
-        }, ws);
+        processMessage(payload);
         break;
       default:
         break;
