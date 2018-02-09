@@ -1,9 +1,9 @@
 import * as actionTypes from '../constants/actionTypes';
 
-let nextMessageId = 0;
-const initialState = [];
+let nextMessageId;
 
-export default (state = initialState, action) => {
+export default (state = [], action) => {
+  if (state.length === 0) nextMessageId = 1;
   switch (action.type) {
     case actionTypes.ADD_MESSAGE:
     case actionTypes.MESSAGE_RECEIVED:
@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
         ...state,
         {
           id: nextMessageId++,
-          text: action.message,
+          message: action.message,
           userId: action.userId,
         },
       ];

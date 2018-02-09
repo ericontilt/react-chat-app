@@ -15,7 +15,7 @@ const MessageList = ({
         messages.map(m => (
           <Message
             key={m.id}
-            text={m.text}
+            message={m.message}
             className={m.userId === userId ? 'Message--mine' : 'Message--theirs'}
           />
         ))

@@ -16,5 +16,3 @@ export const messageReceived = (message, userId) => ({
   message,
   userId,
 });
-
-export const silenceLinter = () => { };

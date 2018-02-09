@@ -4,16 +4,16 @@ import cx from 'classnames';
 
 import './Message.css';
 
-const Message = ({ text, className }) => (
+const Message = ({ message, className }) => (
   <li className={cx({ Message: true }, className)}>
     <blockquote>
-      {text}
+      {message}
     </blockquote>
   </li>
 );
 
 Message.propTypes = {
-  text: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
 };
 
