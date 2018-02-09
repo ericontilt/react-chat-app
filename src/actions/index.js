@@ -11,10 +11,11 @@ export const addMessage = (message, userId) => ({
   userId,
 });
 
-export const messageReceived = (message, userId) => ({
+export const messageReceived = (message, userId, style) => ({
   type: actionTypes.MESSAGE_RECEIVED,
   message,
   userId,
+  style,
 });
 
 export const messageUndo = userId => ({

@@ -14,6 +14,7 @@ export default (state = [], action) => {
           id: nextMessageId++,
           message: action.message,
           userId: action.userId,
+          style: action.style,
         },
       ];
     case actionTypes.MESSAGE_UNDO:

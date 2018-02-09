@@ -43,7 +43,7 @@ wss.on('connection', (ws) => {
       case '/think':
         broadcastToOthers({
           type: 'MESSAGE_RECEIVED',
-          message: payload.message,
+          message: payload.message.replace('/think ', ''),
           userId: payload.userId,
           style: 'think',
         }, ws);

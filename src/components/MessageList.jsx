@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import Message from './Message';
 
@@ -12,14 +13,16 @@ const MessageList = ({
   <section className="MessageList">
     <ol>
       {
-        messages.map(m => (
-          <Message
-            key={m.id}
-            message={m.message}
-            className={m.userId === userId ? 'Message--mine' : 'Message--theirs'}
-          />
-        ))
-      }
+          messages.map(m => (
+            <Message
+              key={m.id}
+              message={m.message}
+              className={cx({
+                [`Message--${m.userId === userId ? 'mine' : 'theirs'}`]: true,
+              }, m.style ? `Message--${m.style}` : null)}
+            />
+          ))
+        }
     </ol>
   </section>
 );

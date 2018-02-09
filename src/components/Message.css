@@ -43,3 +43,7 @@
     bottom: 4px;
     left: -.5em;
 }
+
+.Message--think {
+  color: darkgrey;
+}

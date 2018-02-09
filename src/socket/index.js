@@ -28,7 +28,7 @@ export const createSocket = () => {
           dispatch(registered(data.userId));
           break;
         case types.MESSAGE_RECEIVED:
-          dispatch(messageReceived(data.message, data.userId));
+          dispatch(messageReceived(data.message, data.userId, data.style));
           break;
         case types.MESSAGE_UNDO:
           dispatch(messageUndo(data.userId));
