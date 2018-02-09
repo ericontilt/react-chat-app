@@ -28,7 +28,7 @@ wss.on('connection', (ws) => {
 
     switch (words[0].toLowerCase()) {
       case '/nick':
-        users.find(u => u.userId === payload.userId).name = payload.name;
+        users.find(u => u.id === payload.userId).name = words[1];
         broadcastToOthers({
           type: 'USER_LIST',
           users,

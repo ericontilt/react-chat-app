@@ -21,3 +21,8 @@ export const messageUndo = userId => ({
   type: actionTypes.MESSAGE_UNDO,
   userId,
 });
+
+export const usersReceived = users => ({
+  type: actionTypes.USER_LIST,
+  users,
+});
